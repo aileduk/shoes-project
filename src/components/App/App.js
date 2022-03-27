@@ -13,7 +13,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([])
   const [input, setInput] = useState('');
-  const [size, setSize] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -27,16 +26,6 @@ function App() {
         }
       });
       setCategories(tempArray);
-      const tempArr = [];
-      items.forEach((item) => {
-        item.sizestock.forEach((i) => {
-          if (!tempArr.includes(i.size)) {
-            tempArr.push(i.size)
-          }
-        })
-      })
-      tempArr.sort((a, b) => a - b);
-      setSize(tempArr)
     });
   }, []);
 
@@ -76,7 +65,8 @@ function App() {
                   img={item.img}
                   description={item.description}
                   category={item.category}
-                  size={size}
+                  price={item.price}
+                  sizestock={item.sizestock}
                 />
               ))}
             </div>
