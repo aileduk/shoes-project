@@ -1,0 +1,25 @@
+.card__size {
+    display: flex;
+    overflow: auto;
+    margin-bottom: 18px;
+    margin-top: 18px;
+}
+
+.card__size div {
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    padding: 16px;
+    color: #BDBDBD;
+    font-weight: 500;
+    transition: all .2s ease;
+}
+
+.card__size div:active {
+    background: #5BD6A4;
+    color: #FFFFFF;
+}
+
+.card__size div+div {
+    margin-left: 8px;
+}
