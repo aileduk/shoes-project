@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { getShoesRequest } from "../../api";
 import Card from "../Card/Card";
-import Shoes from "../Shoes/Shoes";
 import './App.css';
 import { getFilteredCards } from "../App/helper"
 
@@ -13,6 +12,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([])
   const [input, setInput] = useState('');
+  const [activeShoes, setActiveShoes] = useState('')
+  const [activeBtn, setActiveBtn] = useState(false)
+  const [focusBtn, setFocusBtn] = useState()
 
   useEffect(() => {
     setLoading(true);
@@ -33,7 +35,19 @@ function App() {
     setInput(e.target.value)
   }
 
-  const filteredCards = getFilteredCards(input, cards)
+  function handleShoes(e, index) {
+    if (!activeBtn) {
+      setActiveShoes(e.target.textContent)
+      setFocusBtn(index)
+    } else {
+      setActiveShoes('')
+      setFocusBtn()
+    }
+    setActiveBtn(!activeBtn)
+    
+  }
+
+  const filteredCards = getFilteredCards(input, cards, activeShoes)
 
 
   return (
@@ -43,10 +57,13 @@ function App() {
           <div className="page">
             <div className="shoes">
               {categories.map((item, index) => (
-                <Shoes
+                <button
                   key={index}
-                  title={item}
-                />
+                  onClick={(e) => handleShoes(e, index)}
+                  className={focusBtn === index ? 'focus' : null}
+                >
+                  {item}
+                </button>
               ))}
             </div>
             <div className="input">

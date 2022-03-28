@@ -89,10 +89,36 @@ body {
 }
 
 .container {
-    max-width: 404px;
+    max-width: 524px;
     width: 100%;
     margin: 0 auto;
     padding: 18px 12px 0px 12px;
+}
+
+.shoes {
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+    margin-bottom: 12px;
+}
+
+.shoes button {
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    padding: 16px;
+    color: #BDBDBD;
+    font-weight: 500;
+    transition: all .2s ease;
+}
+
+.shoes .focus {
+    background: #5BD6A4;
+    color: #FFFFFF;
+}
+
+.shoes button+button {
+    margin-left: 12px;
 }
 
 .input input {

@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import './card.css';
 
 const Card = (props) => {
-    // const [activeSize, setActiveSize] = useState(0);
+    const [activeSize, setActiveSize] = useState(0);
+    const handleSize = (index) => {
+        setActiveSize(index)
+    }
 
     return (
         <div className='card'>
@@ -12,11 +15,17 @@ const Card = (props) => {
                 <img src={props.img} alt={props.category} />
             </div>
             <div className='card__size'>
-                {props.sizestock.map((item, index) => (
-                    <div key={index}>
-                        {item.size}
-                    </div>
-                ))}
+                {!props.sizestock.length
+                    ? <div className='card__not'>Нет в наличии</div>
+                    : props.sizestock.map((item, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handleSize(index)}
+                            className={activeSize === index ? 'focus' : null}
+                        >
+                            {item.size}
+                        </button>
+                    ))}
             </div>
             <div className='card__description'>{props.description}</div>
             <div className='card__footer'>
@@ -31,11 +40,8 @@ const Card = (props) => {
                     <div className='stock__info info'>
                         {!props.sizestock.length
                             ? '0'
-                            : props.sizestock.map((item, index) => (
-                                <div key={index}>
-                                    {item.stock}
-                                </div>
-                            ))}
+                            : props.sizestock[activeSize]?.stock
+                        }
                     </div>
                 </div>
 
@@ -44,11 +50,8 @@ const Card = (props) => {
                     <div className='reserv__info info'>
                         {!props.sizestock.length
                             ? '0'
-                            : props.sizestock.map((item, index) => (
-                                <div key={index}>
-                                    {item.reserv}
-                                </div>
-                            ))}
+                            : props.sizestock[activeSize]?.reserv
+                        }
                     </div>
                 </div>
 
