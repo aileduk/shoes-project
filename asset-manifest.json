@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/jekaproject/static/css/main.bc0631b5.css",
+    "main.js": "/jekaproject/static/js/main.30f30705.js",
+    "index.html": "/jekaproject/index.html",
+    "main.bc0631b5.css.map": "/jekaproject/static/css/main.bc0631b5.css.map",
+    "main.30f30705.js.map": "/jekaproject/static/js/main.30f30705.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc0631b5.css",
+    "static/js/main.30f30705.js"
+  ]
+}
