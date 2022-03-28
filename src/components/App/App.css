@@ -89,10 +89,14 @@ body {
 }
 
 .container {
-    max-width: 524px;
+    max-width: 428px;
     width: 100%;
     margin: 0 auto;
-    padding: 18px 12px 0px 12px;
+    padding: 18px 0px 0px 12px
+}
+
+.page {
+    padding: 0px 12px 0px 0px;
 }
 
 .shoes {
@@ -100,6 +104,7 @@ body {
     overflow: auto;
     white-space: nowrap;
     margin-bottom: 12px;
+    padding-right: 0;
 }
 
 .shoes button {

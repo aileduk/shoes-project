@@ -30,27 +30,27 @@ const Card = (props) => {
             <div className='card__description'>{props.description}</div>
             <div className='card__footer'>
 
-                <div className='card__price'>
+                <div className='footer-item card__price'>
                     <div className='price__text text'>Стоимость</div>
                     <div className='price__info info'>{props.price} ₴</div>
                 </div>
 
-                <div className='card__stock'>
+                <div className='footer-item card__stock'>
                     <div className='stock__text text'>В наличии</div>
                     <div className='stock__info info'>
                         {!props.sizestock.length
-                            ? '0'
-                            : props.sizestock[activeSize]?.stock
+                            ? '0 шт.'
+                            : `${props.sizestock[activeSize]?.stock} шт.`
                         }
                     </div>
                 </div>
 
-                <div className='card__reserv'>
+                <div className='footer-item card__reserv'>
                     <div className='reserv__text text'>Броней</div>
                     <div className='reserv__info info'>
                         {!props.sizestock.length
-                            ? '0'
-                            : props.sizestock[activeSize]?.reserv
+                            ? '0 шт.'
+                            : `${props.sizestock[activeSize]?.reserv} шт.`
                         }
                     </div>
                 </div>
