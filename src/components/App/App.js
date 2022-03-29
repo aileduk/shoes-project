@@ -13,12 +13,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([])
   const [input, setInput] = useState('');
-  // const [activeShoes, setActiveShoes] = useState('')
   const [activeBtn, setActiveBtn] = useState(false)
   const [focusBtn, setFocusBtn] = useState();
   const [renderCards, setRenderCards] = useState([]);
   const [page, setPage] = useState(1);
-
+  const [focusInput, setFocusInput] = useState(false)
 
   useEffect(() => {
     setLoading(true);
@@ -36,28 +35,31 @@ function App() {
     });
   }, []);
 
-  function handleInputChange(e) {
-    setInput(e.target.value)
-  }
-
   function handleCategory(e, index) {
-    const filteredCards = getFilteredCards(input, cards, e.target.textContent);
-    setPage(1)
-    if (!activeBtn) {
-      // setActiveShoes(e.target.textContent);
+    const filteredCards = getFilteredCards(e.target.value, cards, e.target.textContent);
+
+    setInput(e.target.value);
+    setRenderCards(filteredCards);
+    setPage(1);
+
+    if (!activeBtn && !focusInput) {
       setFocusBtn(index);
       setRenderCards(filteredCards);
-      setActiveBtn(!activeBtn)
+      setActiveBtn(!activeBtn);
     } else if (activeBtn && focusBtn === index) {
-      // setActiveShoes('')
-      setFocusBtn()
-      setRenderCards(cards)
-      setActiveBtn(!activeBtn)
+      setFocusBtn();
+      setRenderCards(cards);
+      setActiveBtn(!activeBtn);
     } else if (activeBtn && focusBtn !== index) {
-      // setActiveShoes(e.target.textContent)
       setRenderCards(filteredCards);
-      setFocusBtn(index)
+      setFocusBtn(index);
     }
+  }
+
+  function handleInput() {
+    setFocusInput(true);
+    setFocusBtn();
+    setActiveBtn(false);
   }
 
   const cardsToRender = useMemo(() => {
@@ -89,7 +91,9 @@ function App() {
               <div className="input">
                 <input
                   value={input}
-                  onChange={(e) => handleInputChange(e)}
+                  onChange={(e) => handleCategory(e)}
+                  onFocus={handleInput}
+                  onBlur={() => setFocusInput(false)}
                   placeholder='Введите артикул...'
                   type='text'
                 />
@@ -102,7 +106,11 @@ function App() {
                   dataLength={cardsToRender.length}
                   next={() => setPage((prev) => prev + 1)}
                   hasMore={true}
-                  loader={<div>Loading</div>}
+                  loader={
+                    <div className="loading">
+                      <Loading />
+                    </div>
+                  }
                 >
                   {cardsToRender.map((item, index) => (
                     <Card
