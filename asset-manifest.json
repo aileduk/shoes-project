@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/jekaproject/static/css/main.bc0631b5.css",
-    "main.js": "/jekaproject/static/js/main.30f30705.js",
+    "main.css": "/jekaproject/static/css/main.6f1750bd.css",
+    "main.js": "/jekaproject/static/js/main.2e76c174.js",
+    "static/media/tovaranet.png": "/jekaproject/static/media/tovaranet.0efc894db3f45a25e838.png",
     "index.html": "/jekaproject/index.html",
-    "main.bc0631b5.css.map": "/jekaproject/static/css/main.bc0631b5.css.map",
-    "main.30f30705.js.map": "/jekaproject/static/js/main.30f30705.js.map"
+    "main.6f1750bd.css.map": "/jekaproject/static/css/main.6f1750bd.css.map",
+    "main.2e76c174.js.map": "/jekaproject/static/js/main.2e76c174.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc0631b5.css",
-    "static/js/main.30f30705.js"
+    "static/css/main.6f1750bd.css",
+    "static/js/main.2e76c174.js"
   ]
 }
