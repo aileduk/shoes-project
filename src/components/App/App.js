@@ -6,67 +6,44 @@ import './App.css';
 import { getFilteredCards } from "../App/helper";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../Loading/Loading";
-
+import { ReactComponent as SearchIcon } from "../../assets/search.svg";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([])
+  const [filter, setFilter] = useState(null)
   const [input, setInput] = useState('');
-  const [activeBtn, setActiveBtn] = useState(false)
-  const [focusBtn, setFocusBtn] = useState();
-  const [renderCards, setRenderCards] = useState([]);
   const [page, setPage] = useState(1);
-  const [focusInput, setFocusInput] = useState(false)
 
   useEffect(() => {
     setLoading(true);
     getShoesRequest().then((items) => {
       setCards(items);
-      setRenderCards(items);
-      const tempArray = [];
-      items.forEach((item) => {
-        if (!tempArray.includes(item.category) && item.category.length) {
-          tempArray.push(item.category);
-        }
-      });
-      setCategories(tempArray);
+
+      setCategories(items.reduce((acc, cur) => {
+        return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
+      }, []))
+
       setLoading(false);
     });
   }, []);
 
-  function handleCategory(e, index) {
-    const filteredCards = getFilteredCards(e.target.value, cards, e.target.textContent);
-
-    setInput(e.target.value);
-    setRenderCards(filteredCards);
-    setPage(1);
-
-    if (!activeBtn && !focusInput) {
-      setFocusBtn(index);
-      setRenderCards(filteredCards);
-      setActiveBtn(!activeBtn);
-    } else if (activeBtn && focusBtn === index) {
-      setFocusBtn();
-      setRenderCards(cards);
-      setActiveBtn(!activeBtn);
-    } else if (activeBtn && focusBtn !== index) {
-      setRenderCards(filteredCards);
-      setFocusBtn(index);
-    }
+  function handleInputChange(event) {
+    setInput(event.target.value);
   }
 
-  function handleInput() {
-    setFocusInput(true);
-    setFocusBtn();
-    setActiveBtn(false);
+  function handleFilterClick(value) {
+    setFilter(prev => value === prev ? null : value);
   }
+
+  const filteredCards = useMemo(() => {
+    return getFilteredCards(input, cards, filter)
+  }, [input, cards, filter])
 
   const cardsToRender = useMemo(() => {
-    return renderCards.filter((_, index) => index + 1 <= page * 5);
-  }, [page, renderCards]);
-
-
+    return filteredCards.filter((_, index) => index + 1 <= page * 5);
+  }, [page, filteredCards]);
 
   return (
     <div>
@@ -74,43 +51,38 @@ function App() {
         <div className="loading">
           <Loading />
         </div> : (
-          <div className="container">
+          <div className="app">
             <div className="header">
               <div className="category">
                 {categories.map((item, index) => (
                   <button
                     key={index}
-                    onClick={(e) => handleCategory(e, index)}
-                    className={focusBtn === index ? 'focus' : null}
+                    onClick={() => handleFilterClick(item)}
+                    className={filter === item ? 'focus' : null}
                   >
                     {item}
                   </button>
                 ))}
               </div>
 
-              <div className="input">
-                <input
-                  value={input}
-                  onChange={(e) => handleCategory(e)}
-                  onFocus={handleInput}
-                  onBlur={() => setFocusInput(false)}
-                  placeholder='Введите артикул...'
-                  type='text'
-                />
+              <div className="container">
+                <div className="input">
+                  <SearchIcon />
+                  <input
+                    value={input}
+                    onChange={handleInputChange}
+                    placeholder='Введите артикул...'
+                    type='text'
+                  />
+                </div>
               </div>
             </div>
-
-            <div className="page">
+            <div className="container">
               <div className="cards">
                 <InfiniteScroll
                   dataLength={cardsToRender.length}
                   next={() => setPage((prev) => prev + 1)}
                   hasMore={true}
-                  loader={
-                    <div className="loading">
-                      <Loading />
-                    </div>
-                  }
                 >
                   {cardsToRender.map((item, index) => (
                     <Card

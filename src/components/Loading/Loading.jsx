@@ -3,14 +3,15 @@ import ContentLoader from 'react-content-loader'
 
 const Loading = () => (
     <ContentLoader
-        height="100vh"
-        width="404"
-        viewBox="0 0 265 230"
+        height="700"
+        width="400"
+        viewBox="0 0 400 650"
+        backgroundColor="#5BD6A4"
+        foregroundColor="#cee3db"
     >
-        <rect x="15" y="15" rx="4" ry="4" width="350" height="25" />
-        <rect x="15" y="50" rx="2" ry="2" width="350" height="150" />
-        <rect x="15" y="230" rx="2" ry="2" width="170" height="20" />
-        <rect x="60" y="230" rx="2" ry="2" width="170" height="20" />
+        <rect x="15" y="15" rx="4" ry="4" width="350" height="40" />
+        <rect x="15" y="65" rx="4" ry="4" width="350" height="40" />
+        <rect x="15" y="115" rx="2" ry="2" width="350" height="500" />
     </ContentLoader>
 )
 

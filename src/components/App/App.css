@@ -92,31 +92,44 @@ body {
     max-width: 428px;
     width: 100%;
     margin: 0 auto;
-    padding: 0px 0px 0px 12px;
+    padding: 0px 12px;
+}
+
+.app {
+    max-width: 428px;
+    margin: auto;
 }
 
 .header {
     position: fixed;
     background: #F1F5FB;
     padding-top: 18px;
-    width: 416px;
-}
-
-.page {
-    padding: 150px 12px 0px 0px;
+    max-width: 428px;
+    width: 100%;
 }
 
 .category {
+    margin-left: 12px;
     display: flex;
     overflow: auto;
     white-space: nowrap;
     margin-bottom: 12px;
 }
 
-
 .input {
     width: 100%;
-    padding-right: 12px;
+    position: relative;
+}
+
+.input svg {
+    position: absolute;
+    left: 15px;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.cards {
+    padding-top: 150px;
 }
 
 .input input {
@@ -124,10 +137,9 @@ body {
     background: #FFFFFF;
     border: 1px solid #E8E8E8;
     border-radius: 8px;
-    padding: 15px 0px 15px 16px;
+    padding: 15px 0px 15px 45px;
     margin-bottom: 14px;
 }
-
 
 .category button {
     background: #FFFFFF;
@@ -148,15 +160,14 @@ body {
     margin-left: 12px;
 }
 
-::placeholder {
-    color: #BDBDBD;
-    font-size: 16px;
-    /* background: url('../../assets/search.svg') no-repeat;
-    background-position: 330px 0px; */
-}
-
 .loading {
     display: flex;
     justify-content: center;
     padding: 0px 10px;
+    margin: 0 auto;
+}
+
+::placeholder {
+    color: #BDBDBD;
+    font-size: 16px;
 }

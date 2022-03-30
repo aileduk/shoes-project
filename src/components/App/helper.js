@@ -1,9 +1,8 @@
-export function getFilteredCards(search, cards, activeShoes) {
-    if (search !== '' && activeShoes === '') {
-        return cards.filter((card) => card.name.includes(search))
-    } else if (activeShoes !== '' && search === '') {
-        return cards.filter((card) => card.category.includes(activeShoes))
-    } else {
-        return cards
-    }
+export function getFilteredCards(search, cards, filter) {
+    return cards.filter((card) => {
+        let searchPassed = search === '' || card.name.includes(search);
+        let filterPassed = !filter || card.category === filter;
+
+        return searchPassed && filterPassed
+    })
 }
