@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import image from '../../assets/tovaranet.png'
 import './card.css';
 import Modal from '../Modal/Modal';
+import { ReactComponent as NoImg } from '../../assets/noimage.svg'
 
 
 const Card = ({ img, category, name, description, price, sizestock }) => {
@@ -20,9 +20,15 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
                 setActive={setModalActive}
                 image={img}
             />
-            <div className='card__category'>{category}</div>
+            <div className='card__category'>{!category ? 'Взуття' : category}</div>
             <div className='card__img' >
-                {!category ? <img src={image} alt={category} /> :
+                {!img.includes('.jpg')
+                    ?
+                    <div className='no__img'>
+                        <NoImg />
+                        <p>NO IMAGE</p>
+                    </div>
+                    :
                     <img
                         onClick={() => setModalActive(true)}
                         loading='lazy'
