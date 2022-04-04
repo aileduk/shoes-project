@@ -7,6 +7,7 @@ import { getFilteredCards } from "../App/helper";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../Loading/Loading";
 import { ReactComponent as SearchIcon } from "../../assets/search.svg";
+import isEqual from 'lodash.isequal';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -18,15 +19,18 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    getShoesRequest().then((items) => {
-      setCards(items);
+    // setInterval(() => {
+      getShoesRequest().then((items) => {
+        if (!isEqual(cards, items)) {
+          setCards(items)
+        }
+        setCategories(items.reduce((acc, cur) => {
+          return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
+        }, []))
 
-      setCategories(items.reduce((acc, cur) => {
-        return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
-      }, []))
-
-      setLoading(false);
-    });
+        setLoading(false);
+      });
+    // }, 5000)
   }, []);
 
   function handleInputChange(event) {

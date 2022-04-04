@@ -2,6 +2,7 @@
     padding: 16px;
     background-color: #FFFFFF;
     border-radius: 8px;
+    position: relative;
 }
 
 .card+.card {
@@ -87,16 +88,13 @@
 
 .card__footer {
     display: flex;
-    /* justify-content: space-between; */
 }
-
 
 .card__footer .text {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: #BDBDBD;
-    /* text-align: center; */
 }
 
 .card__footer .info {
@@ -104,7 +102,6 @@
     font-size: 28px;
     line-height: 34px;
     color: #3D3D3D;
-    /* text-align: center; */
 }
 
 .footer-item {
@@ -117,4 +114,23 @@
 
 .card__reserv {
     text-align: right;
+}
+
+.user__info {
+    margin-top: 60px;
+}
+
+.card__buyer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 0px 0px 8px 8px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(92.46deg, #4ABB8D -6.41%, #32B17E 107.19%);
+    color: #fff;
+    /* padding: 10px 0px; */
+    min-height: 70px;
 }
