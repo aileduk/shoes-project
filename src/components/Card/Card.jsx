@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './card.css';
+import './card.scss';
 import Modal from '../Modal/Modal';
 import { ReactComponent as NoImg } from '../../assets/noimage.svg'
 
@@ -8,11 +8,6 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
     const [activeSize, setActiveSize] = useState(0);
     const [modalActive, setModalActive] = useState(false)
 
-    // let arr = [
-    //     { name: 'Anasadasdasdasdaasdasdasd', time: "15:16:45", count: "1sht" },
-    //     { name: 'Anasadasdasdasdaasdasdasd', time: "15:16:45", count: "1sht" },
-    //     { name: 'Anasadasdasdasdaasdasdasd', time: "15:16:45", count: "1sht" },
-    // ]
     const handleSize = (index) => {
         setActiveSize(index)
     }
@@ -104,20 +99,6 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
                     </div>
                 </div>
             }
-            {/* <div className='user__info'>
-                <div className='card__buyer'>
-                    <div className='buyer__name'>{arr.map(item => (
-                        <div>{item.name.slice(0, 20)}</div>
-                    ))}</div> |
-                    <div className='buyer__count'>{arr.map(item => (
-                        <div>{item.count}</div>
-                    ))}</div> |
-                    <div className='buyer__date'>{arr.map(item => (
-                        <div>{item.time}</div>
-                    ))}</div>
-                </div>
-            </div> */}
-
         </div >
     )
 }

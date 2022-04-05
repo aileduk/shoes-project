@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useMemo } from 'react';
 import { getShoesRequest } from "../../api";
 import Card from "../Card/Card";
-import './App.css';
+import './app.scss';
 import { getFilteredCards } from "../App/helper";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../Loading/Loading";
@@ -56,7 +56,9 @@ function App() {
           <Loading />
         </div> : (
           <div className="app">
+
             <div className="header">
+
               <div className="category">
                 {categories.map((item, index) => (
                   <button
@@ -80,7 +82,9 @@ function App() {
                   />
                 </div>
               </div>
+
             </div>
+
             <div className="container">
               <div className="cards">
                 <InfiniteScroll
@@ -102,9 +106,9 @@ function App() {
                 </InfiniteScroll>
               </div>
             </div>
+
           </div>
         )}
-
     </div>
   )
 }
