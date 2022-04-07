@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './card.scss';
 import Modal from '../Modal/Modal';
-import { ReactComponent as NoImg } from '../../assets/noimage.svg'
-
+import { ReactComponent as NoImg } from '../../assets/noimage.svg';
 
 const Card = ({ img, category, name, description, price, sizestock }) => {
     const [activeSize, setActiveSize] = useState(0);

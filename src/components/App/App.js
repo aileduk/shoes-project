@@ -20,16 +20,16 @@ function App() {
   useEffect(() => {
     setLoading(true);
     // setInterval(() => {
-      getShoesRequest().then((items) => {
-        if (!isEqual(cards, items)) {
-          setCards(items)
-        }
-        setCategories(items.reduce((acc, cur) => {
-          return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
-        }, []))
+    getShoesRequest().then((items) => {
+      if (!isEqual(cards, items)) {
+        setCards(items)
+      }
+      setCategories(items.reduce((acc, cur) => {
+        return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
+      }, []))
 
-        setLoading(false);
-      });
+      setLoading(false);
+    });
     // }, 5000)
   }, []);
 

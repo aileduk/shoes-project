@@ -5,7 +5,7 @@ const Loading = () => (
     <ContentLoader
         height="700"
         width="400"
-        viewBox="0 0 400 650"
+        viewBox="0 0 380 650"
         backgroundColor="#5BD6A4"
         foregroundColor="#cee3db"
     >
