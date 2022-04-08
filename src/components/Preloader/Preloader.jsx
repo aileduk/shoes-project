@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-const Loading = () => (
+const Preloader = () => (
     <ContentLoader
         height="700"
         width="400"
@@ -15,4 +15,4 @@ const Loading = () => (
     </ContentLoader>
 )
 
-export default Loading
+export default Preloader

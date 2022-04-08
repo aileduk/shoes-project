@@ -3,11 +3,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { getShoesRequest } from "../../api";
 import Card from "../Card/Card";
 import './app.scss';
-import { getFilteredCards } from "../App/helper";
+import { getFilteredCards } from "../Helper/filteredCards";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loading from "../Loading/Loading";
-import { ReactComponent as SearchIcon } from "../../assets/search.svg";
+import Preloader from "../Preloader/Preloader";
 import isEqual from 'lodash.isequal';
+import Search from "../Search/Search";
+import ShoeCategories from "../ShoeCategories/ShoeCategories";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -52,37 +53,22 @@ function App() {
   return (
     <div>
       {loading ?
-        <div className="loading">
-          <Loading />
+        <div className="loader">
+          <Preloader />
         </div> : (
           <div className="app">
-
             <div className="header">
-
-              <div className="category">
-                {categories.map((item, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleFilterClick(item)}
-                    className={filter === item ? 'focus' : null}
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-
+              <ShoeCategories
+                handleFilterClick={handleFilterClick}
+                categories={categories}
+                filter={filter}
+              />
               <div className="container">
-                <div className="input">
-                  <SearchIcon />
-                  <input
-                    value={input}
-                    onChange={handleInputChange}
-                    placeholder='Введите артикул...'
-                    type='text'
-                  />
-                </div>
+                <Search
+                  input={input}
+                  handleInputChange={handleInputChange}
+                />
               </div>
-
             </div>
 
             <div className="container">
