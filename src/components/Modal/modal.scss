@@ -13,12 +13,10 @@
     transition: all 0.4 ease;
     z-index: 100;
 }
-
 .modal.active {
     opacity: 1;
     pointer-events: all;
 }
-
 .modal__content {
     padding: 20px;
     border-radius: 12px;

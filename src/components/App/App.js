@@ -1,14 +1,41 @@
 import React from "react";
 import { useState, useEffect, useMemo } from 'react';
 import { getShoesRequest } from "../../api";
-import Card from "../Card/Card";
-import './app.scss';
+import Card from "./Card/Card";
 import { getFilteredCards } from "../Helper/filteredCards";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Preloader from "../Preloader/Preloader";
 import isEqual from 'lodash.isequal';
-import Search from "../Search/Search";
-import ShoeCategories from "../ShoeCategories/ShoeCategories";
+import Search from "./Search/Search";
+import ShoeCategories from "./ShoeCategories/ShoeCategories";
+import styled from "styled-components";
+const AppWrapper = styled.div`
+max-width: 428px;
+margin: 0 auto;
+`
+const AppContainer = styled.div`
+max-width: 428px;
+width: 100%;
+margin: 0 auto;
+padding: 0px 12px;
+`
+const AppHeader = styled.div`
+position: fixed;
+background: #f1f5fb;
+padding-top: 18px;
+max-width: 428px;
+width: 100%;
+z-index: 10;
+`
+const AppCards = styled.div`
+padding-top: 170px;
+`
+const AppPreloader = styled.div`
+display: flex;
+justify-content: center;
+padding: 0px 0px;
+margin: 0 auto;
+`
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -20,7 +47,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    setInterval(() => {
+    // setInterval(() => {
     getShoesRequest().then((items) => {
       if (!isEqual(cards, items)) {
         setCards(items)
@@ -31,8 +58,8 @@ function App() {
 
       setLoading(false);
     });
-    }, 5000)
-  }, []);
+    // }, 5000)
+  }, [cards]);
 
   function handleInputChange(event) {
     setInput(event.target.value);
@@ -51,28 +78,29 @@ function App() {
   }, [page, filteredCards]);
 
   return (
-    <div>
+    <>
       {loading ?
-        <div className="loader">
+        <AppPreloader>
           <Preloader />
-        </div> : (
-          <div className="app">
-            <div className="header">
+        </AppPreloader> : (
+          <AppWrapper>
+
+            <AppHeader>
               <ShoeCategories
                 handleFilterClick={handleFilterClick}
                 categories={categories}
                 filter={filter}
               />
-              <div className="container">
+              <AppContainer>
                 <Search
                   input={input}
                   handleInputChange={handleInputChange}
                 />
-              </div>
-            </div>
+              </AppContainer>
+            </AppHeader>
 
-            <div className="container">
-              <div className="cards">
+            <AppContainer>
+              <AppCards>
                 <InfiniteScroll
                   dataLength={cardsToRender.length}
                   next={() => setPage((prev) => prev + 1)}
@@ -90,12 +118,12 @@ function App() {
                     />
                   ))}
                 </InfiniteScroll>
-              </div>
-            </div>
+              </AppCards>
+            </AppContainer>
 
-          </div>
+          </AppWrapper>
         )}
-    </div>
+    </>
   )
 }
 
