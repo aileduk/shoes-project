@@ -22,7 +22,7 @@ import {
     CardBuyer
 } from './CardStyled';
 
-const Card = ({ img, category, name, description, price, sizestock }) => {
+const Card = ({ img, category, name, description, price, sizestock, nightTheme }) => {
     const [activeSize, setActiveSize] = useState(0);
     const [modalActive, setModalActive] = useState(false)
 
@@ -31,20 +31,23 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
     }
 
     return (
-        <AppCard>
+        <AppCard
+            nightTheme={nightTheme}>
             <Modal
                 active={modalActive}
                 setActive={setModalActive}
                 image={img}
             />
             <CardArticle>{name}</CardArticle>
-            <CardCategories>{!category ? 'Взуття' : category}</CardCategories>
+            <CardCategories
+                nightTheme={nightTheme}
+            >{!category ? 'Взуття' : category}</CardCategories>
             <CardImageWrapper>
                 {!img.includes('.jpg')
                     ?
                     <CardNoImage>
                         <NoImg />
-                        <p>NO IMAGE</p>
+                        <p nightTheme={nightTheme}>NO IMAGE</p>
                     </CardNoImage>
                     :
                     <CardImage
@@ -64,20 +67,23 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
                             key={index}
                             onClick={() => handleSize(index)}
                             className={activeSize === index ? 'focus' : null}
+                            nightTheme={nightTheme}
                         >
                             {item.size}
                         </CardSizeButton>
                     ))}
             </CardSize>
-            <CardDescription>{description}</CardDescription>
+            <CardDescription
+                nightTheme={nightTheme}
+            >{description}</CardDescription>
             <CardFooter>
                 <CardItem>
-                    <CardText>Ціна</CardText>
+                    <CardText nightTheme={nightTheme}>Ціна</CardText>
                     <CardInfo>{!price ? '0' : price} ₴</CardInfo>
                 </CardItem>
 
                 <CardStock>
-                    <CardText>В наявності</CardText>
+                    <CardText nightTheme={nightTheme}>В наявності</CardText>
                     <CardInfo>
                         {!sizestock.length
                             ? '0 шт.'
@@ -87,7 +93,7 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
                 </CardStock>
 
                 <CardReserv>
-                    <CardText>Броней</CardText>
+                    <CardText nightTheme={nightTheme}>Броней</CardText>
                     <CardInfo>
                         {!sizestock.length
                             ? '0 шт.'

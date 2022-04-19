@@ -8,7 +8,7 @@ import Preloader from "../Preloader/Preloader";
 import isEqual from 'lodash.isequal';
 import Search from "./Search/Search";
 import ShoeCategories from "./ShoeCategories/ShoeCategories";
-import {AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards} from './AppStyled'
+import { AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards } from './AppStyled'
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -17,10 +17,11 @@ function App() {
   const [filter, setFilter] = useState(null)
   const [input, setInput] = useState('');
   const [page, setPage] = useState(1);
+  const [nightTheme, setNightTheme] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    // setInterval(() => {
+    setInterval(() => {
     getShoesRequest().then((items) => {
       if (!isEqual(cards, items)) {
         setCards(items)
@@ -31,8 +32,12 @@ function App() {
 
       setLoading(false);
     });
-    // }, 5000)
+    }, 5000)
   }, [cards]);
+
+  function handleTheme() {
+    setNightTheme(!nightTheme)
+  }
 
   function handleInputChange(event) {
     setInput(event.target.value);
@@ -56,18 +61,24 @@ function App() {
         <AppPreloader>
           <Preloader />
         </AppPreloader> : (
-          <AppWrapper>
+          <AppWrapper
+            nightTheme={nightTheme}
+          >
 
-            <AppHeader>
+            <AppHeader
+              nightTheme={nightTheme}>
               <ShoeCategories
                 handleFilterClick={handleFilterClick}
                 categories={categories}
                 filter={filter}
+                nightTheme={nightTheme}
               />
               <AppContainer>
                 <Search
                   input={input}
                   handleInputChange={handleInputChange}
+                  handleTheme={handleTheme}
+                  nightTheme={nightTheme}
                 />
               </AppContainer>
             </AppHeader>
@@ -88,6 +99,7 @@ function App() {
                       category={item.category}
                       price={item.price}
                       sizestock={item.sizestock}
+                      nightTheme={nightTheme}
                     />
                   ))}
                 </InfiniteScroll>

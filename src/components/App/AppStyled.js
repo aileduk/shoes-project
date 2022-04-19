@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const AppWrapper = styled.div`
 max-width: 428px;
 margin: 0 auto;
+background: ${props => props.nightTheme ? '#f1f5fb' : '#434751'};
 `
 export const AppContainer = styled.div`
 max-width: 428px;
@@ -12,7 +13,7 @@ padding: 0px 12px;
 `
 export const AppHeader = styled.div`
 position: fixed;
-background: #f1f5fb;
+background: ${props => props.nightTheme ? '#f1f5fb' : '#434751'};
 padding-top: 18px;
 max-width: 428px;
 width: 100%;
@@ -24,6 +25,5 @@ padding-top: 170px;
 export const AppPreloader = styled.div`
 display: flex;
 justify-content: center;
-padding: 0px 0px;
 margin: 0 auto;
 `

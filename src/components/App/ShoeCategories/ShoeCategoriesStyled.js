@@ -5,18 +5,17 @@ margin-left: 12px;
 display: flex;
 overflow: auto;
 white-space: nowrap;
-margin-bottom: 12px;
+margin-bottom: 20px;
 .focus {
     background: #5bd6a4;
-    color: #ffffff;
+    color: #fff;
 }
 `
 export const AppButton = styled.button`
-background: #ffffff;
-border: 1px solid #e8e8e8;
+background: ${props => props.nightTheme ? '#fff' : 'grey'};
 border-radius: 8px;
 padding: 16px;
-color: #bdbdbd;
+color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
 font-weight: 500;
 transition: all 0.3s ease;
 & + & {

@@ -64,6 +64,7 @@ button, input[type="submit"] {
     background-color: transparent;
     background: none;
     cursor: pointer;
+    color: inherit;
 }
 
 input:focus, input:active,
@@ -88,6 +89,5 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 16px;
     line-height: 19.5px;
-    background: #f1f5fb;
 }
 `
