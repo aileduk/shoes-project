@@ -8,34 +8,7 @@ import Preloader from "../Preloader/Preloader";
 import isEqual from 'lodash.isequal';
 import Search from "./Search/Search";
 import ShoeCategories from "./ShoeCategories/ShoeCategories";
-import styled from "styled-components";
-const AppWrapper = styled.div`
-max-width: 428px;
-margin: 0 auto;
-`
-const AppContainer = styled.div`
-max-width: 428px;
-width: 100%;
-margin: 0 auto;
-padding: 0px 12px;
-`
-const AppHeader = styled.div`
-position: fixed;
-background: #f1f5fb;
-padding-top: 18px;
-max-width: 428px;
-width: 100%;
-z-index: 10;
-`
-const AppCards = styled.div`
-padding-top: 170px;
-`
-const AppPreloader = styled.div`
-display: flex;
-justify-content: center;
-padding: 0px 0px;
-margin: 0 auto;
-`
+import {AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards} from './AppStyled'
 
 function App() {
   const [cards, setCards] = useState([]);
