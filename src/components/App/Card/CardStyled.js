@@ -97,18 +97,17 @@ line-height: 34px;
 color: #3d3d3d;
 `
 export const CardBuyerWrapper = styled.div`
-margin-top: 60px;
+margin-top: 10px;
 `
 export const CardBuyer = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-evenly;
 border-radius: 0px 0px 8px 8px;
-position: absolute;
-left: 0;
-bottom: 0;
-width: 100%;
+width: 404px;
 background: linear-gradient(92.46deg, #4abb8d -6.41%, #32b17e 107.19%);
 color: #fff;
-min-height: 70px;
+margin-left: -15px;
+margin-bottom: -15px;
+padding: 10px 0px;
 `

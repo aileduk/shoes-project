@@ -106,7 +106,11 @@ const Card = ({ img, category, name, description, price, sizestock }) => {
                                 <div>{item.dropshipper_name.slice(0, 20)}</div>
                             ))}
                         </div> |
-                        <div>{`${sizestock[activeSize]?.reserv} шт.`}</div> |
+                        <div>
+                            <div>
+                                {`${sizestock[activeSize]?.reserv} шт.`}
+                            </div>
+                        </div> |
                         <div>
                             {sizestock[activeSize]?.reservs?.map(item => (
                                 <div>{item.reservdate.slice(-8, item.reservdate.length)}</div>
