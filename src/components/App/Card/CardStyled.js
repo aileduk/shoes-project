@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AppCard = styled.div`
 padding: 16px;
 
-background: ${props => props.nightTheme ? '#fff' : 'grey'};
+background: ${props => !props.nightTheme ? '#fff' : 'grey'};
 border-radius: 8px;
 position: relative;
 transition: all .3s ease;
@@ -20,7 +20,7 @@ color: #000;
 
 export const CardCategories = styled.div`
 font-weight: 400;
-color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 margin-bottom: 18px;
 `
 export const CardImageWrapper = styled.div`
@@ -38,7 +38,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 p {
-    color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+    color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 }
 `
 export const CardSize = styled.div`
@@ -57,11 +57,11 @@ line-height: 19px;
 color: crimson;
 `
 export const CardSizeButton = styled.button`
-background: ${props => props.nightTheme ? '#fff' : 'grey'};
-border: 1px solid ${props => props.nightTheme ? '#e8e8e8' : '#fff'};
+background: ${props => !props.nightTheme ? '#fff' : 'grey'};
+border: 1px solid ${props => !props.nightTheme ? '#e8e8e8' : '#fff'};
 border-radius: 8px;
 padding: 16px;
-color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 font-weight: 500;
 transition: all 0.3s ease;
 & + & {
@@ -72,7 +72,7 @@ transition: all 0.3s ease;
 export const CardDescription = styled.div`
 font-weight: 400;
 text-align: center;
-color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 margin-bottom: 18px;
 `
 
@@ -90,7 +90,7 @@ text-align: right;
 `
 export const CardText = styled.div`
 font-weight: 400;
-color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 `
 export const CardInfo = styled.div`
 font-weight: 500;

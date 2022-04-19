@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    setInterval(() => {
+    // setInterval(() => {
     getShoesRequest().then((items) => {
       if (!isEqual(cards, items)) {
         setCards(items)
@@ -32,7 +32,7 @@ function App() {
 
       setLoading(false);
     });
-    }, 5000)
+    // }, 5000)
   }, [cards]);
 
   function handleTheme() {

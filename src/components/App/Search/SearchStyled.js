@@ -16,7 +16,7 @@ transform: translateY(-50%);
     top: 50%;   
     width: 20px;
     height: 20px;
-    fill: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+    fill: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 }
 `
 
@@ -31,19 +31,19 @@ transform: translateY(-50%);
     top: 50%;
     width: 20px;
     height: 20px;
-    fill: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+    fill: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
 }
 `
 
 export const AppInput = styled.input`
 width: 100%;
-background: ${props => props.nightTheme ? '#fff' : 'grey'};
+background: ${props => !props.nightTheme ? '#fff' : 'grey'};
 border-radius: 8px;
 padding: 15px 45px 15px 45px;
 margin-bottom: 14px;
 transition: all .3s ease;
 &::placeholder {
-    color: ${props => props.nightTheme ? '#bdbdbd' : '#fff'};
+    color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
     font-size: 16px;
 }
 ` 
