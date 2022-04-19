@@ -1,7 +1,8 @@
 import React from 'react';
-import { ReactComponent as SearchIcon } from "../../../assets/search.svg";
 import { AppInput, AppInputWrapper, AppTheme, SearchIconWrapper } from './SearchStyled';
+import { ReactComponent as SearchIcon } from "../../../assets/search.svg";
 import { ReactComponent as SunIcon } from "../../../assets/sun.svg";
+import { ReactComponent as MoonIcon } from "../../../assets/moon.svg";
 
 
 
@@ -15,7 +16,7 @@ const Search = (props) => {
             </SearchIconWrapper>
 
             <AppTheme onClick={props.handleTheme} nightTheme={props.nightTheme}>
-                <SunIcon />
+                {!props.nightTheme ? <SunIcon /> : <MoonIcon />}
             </AppTheme>
 
             <AppInput
