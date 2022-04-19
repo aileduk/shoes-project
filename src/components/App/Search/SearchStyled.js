@@ -21,11 +21,11 @@ transform: translateY(-50%);
 `
 
 export const AppTheme = styled.button`
-width: 20px;
-height: 20px;
+width: 40px;
+height: 40px;
 position: absolute;
 top: 40%;
-right: 15px;
+right: 5px;
 transform: translateY(-50%);
 & > svg {
     top: 50%;
