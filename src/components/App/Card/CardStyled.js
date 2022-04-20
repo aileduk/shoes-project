@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const AppCard = styled.div`
 padding: 16px;
-
-background: ${props => !props.nightTheme ? '#fff' : 'grey'};
+background: ${props => !props.nightTheme ? '#fff' : '#434751'};
 border-radius: 8px;
 position: relative;
 transition: all .3s ease;
@@ -20,11 +19,11 @@ color: #000;
 
 export const CardCategories = styled.div`
 font-weight: 400;
-color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#E0E0E0'};
 margin-bottom: 18px;
 `
 export const CardImageWrapper = styled.div`
-background: #f9f9f9;
+background: ${props => !props.nightTheme ? '#f1f1f1' : 'grey'};
 border-radius: 8px;
 `
 export const CardImage = styled.img`
@@ -38,7 +37,10 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 p {
-    color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
+    color: ${props => !props.nightTheme ? '#bdbdbd' : 'lightgrey'};
+}
+& > svg {
+    fill: ${props => !props.nightTheme ? '#bdbdbd' : 'lightgrey'}
 }
 `
 export const CardSize = styled.div`
@@ -47,8 +49,8 @@ overflow: auto;
 margin-bottom: 18px;
 margin-top: 18px;
 .focus {
-    background: #5bd6a4;
-    color: #ffffff;
+    background: ${props => !props.nightTheme ? '#5bd6a4' : '#2C9F6F'};
+    color: #fff;
 }
 `
 export const CardSizeNot = styled.div`
@@ -57,11 +59,11 @@ line-height: 19px;
 color: crimson;
 `
 export const CardSizeButton = styled.button`
-background: ${props => !props.nightTheme ? '#fff' : 'grey'};
-border: 1px solid ${props => !props.nightTheme ? '#e8e8e8' : '#fff'};
+background: transparent;
+border: 1px solid ${props => !props.nightTheme ? '#e8e8e8' : '#E0E0E0'};
 border-radius: 8px;
 padding: 16px;
-color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#E0E0E0'};
 font-weight: 500;
 transition: all 0.3s ease;
 & + & {
@@ -72,7 +74,7 @@ transition: all 0.3s ease;
 export const CardDescription = styled.div`
 font-weight: 400;
 text-align: center;
-color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#E0E0E0'};
 margin-bottom: 18px;
 `
 
@@ -90,7 +92,7 @@ text-align: right;
 `
 export const CardText = styled.div`
 font-weight: 400;
-color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#E0E0E0'};
 `
 export const CardInfo = styled.div`
 font-weight: 500;
@@ -112,5 +114,5 @@ margin-left: -16px;
 margin-right: -16px;
 margin-bottom: -16px;
 padding: 10px 0px;
-background: #5bd6a4;
+background: ${props => !props.nightTheme ? '#5bd6a4' : '#2C9F6F'};
 `

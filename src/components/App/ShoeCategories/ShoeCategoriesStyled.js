@@ -12,10 +12,10 @@ margin-bottom: 20px;
 }
 `
 export const AppButton = styled.button`
-background: ${props => !props.nightTheme ? '#fff' : 'grey'};
+background: ${props => !props.nightTheme ? '#fff' : '#434751'};
 border-radius: 8px;
 padding: 16px;
-color: ${props => !props.nightTheme ? '#bdbdbd' : '#fff'};
+color: ${props => !props.nightTheme ? '#bdbdbd' : '#E0E0E0'};
 font-weight: 500;
 transition: all 0.3s ease;
 & + & {

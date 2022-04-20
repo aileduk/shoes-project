@@ -42,12 +42,14 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
             <CardCategories
                 nightTheme={nightTheme}
             >{!category ? 'Взуття' : category}</CardCategories>
-            <CardImageWrapper>
+            <CardImageWrapper
+                nightTheme={nightTheme}
+            >
                 {!img.includes('.jpg')
                     ?
-                    <CardNoImage>
+                    <CardNoImage nightTheme={nightTheme}>
                         <NoImg />
-                        <p nightTheme={nightTheme}>NO IMAGE</p>
+                        <p>NO IMAGE</p>
                     </CardNoImage>
                     :
                     <CardImage
@@ -59,7 +61,9 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
                     />
                 }
             </CardImageWrapper>
-            <CardSize>
+            <CardSize
+                nightTheme={nightTheme}
+            >
                 {!sizestock.length
                     ? <CardSizeNot>Немає в наявності</CardSizeNot>
                     : sizestock.map((item, index) => (
@@ -106,7 +110,7 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
                 ? null
                 :
                 <CardBuyerWrapper>
-                    <CardBuyer>
+                    <CardBuyer nightTheme={nightTheme}>
                         <div>
                             {sizestock[activeSize]?.reservs?.map(item => (
                                 <div>{item.dropshipper_name.slice(0, 20)}</div>
