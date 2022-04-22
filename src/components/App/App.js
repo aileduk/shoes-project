@@ -11,6 +11,7 @@ import ShoeCategories from "./ShoeCategories/ShoeCategories";
 import { AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards } from './AppStyled'
 
 function App() {
+
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([])
@@ -57,10 +58,12 @@ function App() {
 
   return (
     <>
-      {loading ?
+      {loading
+        ?
         <AppPreloader>
           <Preloader />
-        </AppPreloader> : (
+        </AppPreloader>
+        : (
           <AppWrapper
             nightTheme={nightTheme}
           >
