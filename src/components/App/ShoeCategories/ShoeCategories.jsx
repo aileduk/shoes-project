@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppCategories, AppButton } from './ShoeCategoriesStyled';
+import { AppCategories, AppButton } from './styled';
 
 const ShoeCategories = (props) => {
     return (
@@ -10,7 +10,7 @@ const ShoeCategories = (props) => {
                 <AppButton
                     key={index}
                     onClick={() => props.handleFilterClick(item)}
-                    className={props.filter === item ? 'focus' : null}
+                    focus={props.filter === item}
                     nightTheme={props.nightTheme}
                 >
                     {item}

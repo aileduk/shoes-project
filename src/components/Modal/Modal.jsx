@@ -1,13 +1,13 @@
 import React from 'react';
-import './modal.scss';
+import { ModalWrapper, ModalContent } from './styled';
 
-const Modal = ({ active, setActive, image }) => {
+const Modal = ({ modalActive, setModalActive, image }) => {
     return (
-        <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
-            <div className='modal__content' onClick={e => e.stopPropagation()}>
+        <ModalWrapper active={modalActive} onClick={() => setModalActive(false)}>
+            <ModalContent onClick={e => e.stopPropagation()}>
                 <img src={image} alt="img" />
-            </div>
-        </div>
+            </ModalContent>
+        </ModalWrapper>
     )
 }
 

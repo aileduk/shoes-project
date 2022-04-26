@@ -2,13 +2,13 @@ import React from "react";
 import { useState, useEffect, useMemo } from 'react';
 import { getShoesRequest } from "../../api";
 import Card from "./Card/Card";
-import { getFilteredCards } from "../Helper/filteredCards";
+import { getFilteredCards } from "../../helpers/filteredCards";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Preloader from "../Preloader/Preloader";
 import isEqual from 'lodash.isequal';
 import Search from "./Search/Search";
 import ShoeCategories from "./ShoeCategories/ShoeCategories";
-import { AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards } from './AppStyled'
+import { AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards } from './styled'
 
 function App() {
 
@@ -22,18 +22,19 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    // setInterval(() => {
-    getShoesRequest().then((items) => {
-      if (!isEqual(cards, items)) {
-        setCards(items)
-      }
-      setCategories(items.reduce((acc, cur) => {
-        return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
-      }, []))
+    // const intervalId = setInterval(() => {
+      getShoesRequest().then((items) => {
+        if (!isEqual(cards, items)) {
+          setCards(items)
+        }
+        setCategories(items.reduce((acc, cur) => {
+          return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
+        }, []))
 
-      setLoading(false);
-    });
+        setLoading(false);
+      });
     // }, 5000)
+    // return () => clearInterval(intervalId);
   }, [cards]);
 
   function handleTheme() {

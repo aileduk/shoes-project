@@ -90,4 +90,13 @@ body {
     font-size: 16px;
     line-height: 19.5px;
 }
+
+:root {
+    --dayThemeBackground: #f1f5fb;
+    --nightThemeBackground: #363F53;
+    --dayColor: #bdbdbd;
+    --nightColor: #e0e0e0;
+    --dayBackground: #fff;
+    --nightBackground: #434751;
+}
 `

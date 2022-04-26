@@ -1,10 +1,8 @@
 import React from 'react';
-import { AppInput, AppInputWrapper, AppTheme, SearchIconWrapper } from './SearchStyled';
+import { AppInput, AppInputWrapper, AppTheme, SearchIconWrapper } from './styled';
 import { ReactComponent as SearchIcon } from "../../../assets/search.svg";
 import { ReactComponent as SunIcon } from "../../../assets/sun.svg";
 import { ReactComponent as MoonIcon } from "../../../assets/moon.svg";
-
-
 
 const Search = (props) => {
 

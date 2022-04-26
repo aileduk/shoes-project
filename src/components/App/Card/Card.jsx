@@ -18,9 +18,8 @@ import {
     CardReserv,
     CardText,
     CardInfo,
-    CardBuyerWrapper,
-    CardBuyer
-} from './CardStyled';
+} from './styled';
+import Buyer from './CardBuyer/Buyer';
 
 const Card = ({ img, category, name, description, price, sizestock, nightTheme }) => {
     const [activeSize, setActiveSize] = useState(0);
@@ -34,8 +33,8 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
         <AppCard
             nightTheme={nightTheme}>
             <Modal
-                active={modalActive}
-                setActive={setModalActive}
+                modalActive={modalActive}
+                setModalActive={setModalActive}
                 image={img}
             />
             <CardArticle>{name}</CardArticle>
@@ -70,7 +69,7 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
                         <CardSizeButton
                             key={index}
                             onClick={() => handleSize(index)}
-                            className={activeSize === index ? 'focus' : null}
+                            focus={activeSize === index}
                             nightTheme={nightTheme}
                         >
                             {item.size}
@@ -109,25 +108,11 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
             {!sizestock.length || sizestock[activeSize]?.reserv === "0"
                 ? null
                 :
-                <CardBuyerWrapper>
-                    <CardBuyer nightTheme={nightTheme}>
-                        <div>
-                            {sizestock[activeSize]?.reservs?.map(item => (
-                                <div>{item.dropshipper_name.slice(0, 20)}</div>
-                            ))}
-                        </div> |
-                        <div>
-                            <div>
-                                {`${sizestock[activeSize]?.reserv} шт.`}
-                            </div>
-                        </div> |
-                        <div>
-                            {sizestock[activeSize]?.reservs?.map(item => (
-                                <div>{item.reservdate.slice(-8, item.reservdate.length)}</div>
-                            ))}
-                        </div>
-                    </CardBuyer>
-                </CardBuyerWrapper>
+                <Buyer
+                    nightTheme={nightTheme}
+                    sizestock={sizestock}
+                    activeSize={activeSize}
+                />
             }
         </AppCard >
     )
