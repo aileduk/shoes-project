@@ -20,14 +20,21 @@ import {
     CardInfo,
 } from './styled';
 import Buyer from './CardBuyer/Buyer';
+import { useDispatch } from 'react-redux';
+import { setActiveSizeAction } from '../../../redux/app/actions';
 
-const Card = ({ img, category, name, description, price, sizestock, nightTheme }) => {
-    const [activeSize, setActiveSize] = useState(0);
+const Card = ({ img, category, name, description, price, sizestock, nightTheme, activeSize }) => {
     const [modalActive, setModalActive] = useState(false)
 
-    const handleSize = (index) => {
-        setActiveSize(index)
+    const dispatch = useDispatch()
+
+    const handleSize = (name, size) => {
+        dispatch(setActiveSizeAction(name, size))
     }
+
+    const activeSizeInfo = sizestock.find(item => {
+        return item.size === activeSize
+    })
 
     return (
         <AppCard
@@ -68,8 +75,8 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
                     : sizestock.map((item, index) => (
                         <CardSizeButton
                             key={index}
-                            onClick={() => handleSize(index)}
-                            focus={activeSize === index}
+                            onClick={() => handleSize(name, item?.size)}
+                            focus={activeSize === item?.size}
                             nightTheme={nightTheme}
                         >
                             {item.size}
@@ -90,7 +97,7 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
                     <CardInfo>
                         {!sizestock.length
                             ? '0 шт.'
-                            : `${sizestock[activeSize]?.stock} шт.`
+                            : `${activeSizeInfo?.stock} шт.`
                         }
                     </CardInfo>
                 </CardStock>
@@ -100,18 +107,17 @@ const Card = ({ img, category, name, description, price, sizestock, nightTheme }
                     <CardInfo>
                         {!sizestock.length
                             ? '0 шт.'
-                            : `${sizestock[activeSize]?.reserv} шт.`
+                            : `${activeSizeInfo?.reserv} шт.`
                         }
                     </CardInfo>
                 </CardReserv>
             </CardFooter>
-            {!sizestock.length || sizestock[activeSize]?.reserv === "0"
+            {!sizestock.length || activeSizeInfo?.reserv === "0"
                 ? null
                 :
                 <Buyer
                     nightTheme={nightTheme}
-                    sizestock={sizestock}
-                    activeSize={activeSize}
+                    activeSizeInfo={activeSizeInfo}
                 />
             }
         </AppCard >

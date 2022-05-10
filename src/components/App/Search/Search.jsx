@@ -4,23 +4,22 @@ import { ReactComponent as SearchIcon } from "../../../assets/search.svg";
 import { ReactComponent as SunIcon } from "../../../assets/sun.svg";
 import { ReactComponent as MoonIcon } from "../../../assets/moon.svg";
 
-const Search = (props) => {
-
+const Search = ({nightTheme, handleInputChange, input, handleTheme}) => {
     return (
         <AppInputWrapper>
 
-            <SearchIconWrapper nightTheme={props.nightTheme}>
+            <SearchIconWrapper nightTheme={nightTheme}>
                 <SearchIcon />
             </SearchIconWrapper>
 
-            <AppTheme onClick={props.handleTheme} nightTheme={props.nightTheme}>
-                {!props.nightTheme ? <SunIcon /> : <MoonIcon />}
+            <AppTheme onClick={handleTheme} nightTheme={nightTheme}>
+                {!nightTheme ? <SunIcon /> : <MoonIcon />}
             </AppTheme>
 
             <AppInput
-                nightTheme={props.nightTheme}
-                value={props.input}
-                onChange={props.handleInputChange}
+                nightTheme={nightTheme}
+                value={input}
+                onChange={handleInputChange}
                 placeholder='Введіть артикул...'
                 type='text'
             />

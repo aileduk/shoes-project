@@ -1,5 +1,5 @@
+// import { getCardsAction } from "../store/cardsReducer"
 const BASE_URL = 'http://gloria.rdport.net:28041/'
-
 
 async function getRequest(url) {
     const response = await fetch(`${BASE_URL}${url}`, {

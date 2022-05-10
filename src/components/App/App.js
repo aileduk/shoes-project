@@ -1,52 +1,48 @@
 import React from "react";
 import { useState, useEffect, useMemo } from 'react';
-import { getShoesRequest } from "../../api";
-import Card from "./Card/Card";
 import { getFilteredCards } from "../../helpers/filteredCards";
+import Card from "./Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Preloader from "../Preloader/Preloader";
-import isEqual from 'lodash.isequal';
 import Search from "./Search/Search";
 import ShoeCategories from "./ShoeCategories/ShoeCategories";
 import { AppPreloader, AppHeader, AppWrapper, AppContainer, AppCards } from './styled'
+import { useDispatch, useSelector } from "react-redux";
+import { setInputAction, setPageAction, setFilterAction } from "../../redux/app/actions";
+import { getShoesAction } from "../../helpers/getShoesAction";
 
 function App() {
 
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState([])
-  const [filter, setFilter] = useState(null)
-  const [input, setInput] = useState('');
-  const [page, setPage] = useState(1);
+  // const [cards, setCards] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [categories, setCategories] = useState([])
+  // const [filter, setFilter] = useState(null)
+  // const [input, setInput] = useState('');
+  // const [page, setPage] = useState(1);
   const [nightTheme, setNightTheme] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    // const intervalId = setInterval(() => {
-      getShoesRequest().then((items) => {
-        if (!isEqual(cards, items)) {
-          setCards(items)
-        }
-        setCategories(items.reduce((acc, cur) => {
-          return !acc.includes(cur.category) && cur.category.length ? [...acc, cur.category] : acc
-        }, []))
+  const dispatch = useDispatch();
+  const cards = useSelector(state => state.appReducer.cards)
+  const loading = useSelector(state => state.appReducer.loading)
+  const input = useSelector(state => state.appReducer.input)
+  const categories = useSelector(state => state.appReducer.categories)
+  const filter = useSelector(state => state.appReducer.filter)
+  const page = useSelector(state => state.appReducer.page)
 
-        setLoading(false);
-      });
-    // }, 5000)
-    // return () => clearInterval(intervalId);
-  }, [cards]);
+  useEffect(() => {
+    dispatch(getShoesAction())
+  }, [dispatch]);
 
   function handleTheme() {
     setNightTheme(!nightTheme)
   }
 
   function handleInputChange(event) {
-    setInput(event.target.value);
+    dispatch(setInputAction(event.target.value))
   }
 
   function handleFilterClick(value) {
-    setFilter(prev => value === prev ? null : value);
+    dispatch(setFilterAction(value === filter ? null : value));
   }
 
   const filteredCards = useMemo(() => {
@@ -91,11 +87,12 @@ function App() {
               <AppCards>
                 <InfiniteScroll
                   dataLength={cardsToRender.length}
-                  next={() => setPage((prev) => prev + 1)}
+                  next={() => dispatch(setPageAction(page + 1))}
                   hasMore={true}
                 >
                   {cardsToRender.map((item, index) => (
                     <Card
+                      activeSize={item.activeSize}
                       key={index}
                       name={item.name}
                       img={item.img}

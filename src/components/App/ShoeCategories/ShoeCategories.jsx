@@ -1,17 +1,17 @@
 import React from 'react';
 import { AppCategories, AppButton } from './styled';
 
-const ShoeCategories = (props) => {
+const ShoeCategories = ({ nightTheme, handleFilterClick, filter, categories }) => {
     return (
         <AppCategories
-            nightTheme={props.nightTheme}
+            nightTheme={nightTheme}
         >
-            {props.categories.map((item, index) => (
+            {categories.map((item, index) => (
                 <AppButton
                     key={index}
-                    onClick={() => props.handleFilterClick(item)}
-                    focus={props.filter === item}
-                    nightTheme={props.nightTheme}
+                    onClick={() => handleFilterClick(item)}
+                    focus={filter === item}
+                    nightTheme={nightTheme}
                 >
                     {item}
                 </AppButton>
